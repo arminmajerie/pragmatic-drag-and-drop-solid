@@ -1,0 +1,89 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop-hitbox",
+  "version": "1.0.0",
+  "description": "Attach interaction information to a drop target (Solid-compatible)",
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git"
+  },
+  "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
+  "bugs": {
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues"
+  },
+
+  "sideEffects": false,
+
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts"
+    },
+    "./closest-edge": {
+      "types": "./dist/closest-edge.d.ts",
+      "import": "./dist/closest-edge.js",
+      "require": "./dist/closest-edge.js"
+    },
+    "./list-item": {
+      "types": "./dist/list-item.d.ts",
+      "import": "./dist/list-item.js",
+      "require": "./dist/list-item.js"
+    },
+    "./tree-item": {
+      "types": "./dist/tree-item.d.ts",
+      "import": "./dist/tree-item.js",
+      "require": "./dist/tree-item.js"
+    },
+    "./util/reorder-with-edge": {
+      "types": "./dist/util/reorder-with-edge.d.ts",
+      "import": "./dist/util/reorder-with-edge.js",
+      "require": "./dist/util/reorder-with-edge.js"
+    },
+    "./util/get-reorder-destination-index": {
+      "types": "./dist/util/get-reorder-destination-index.d.ts",
+      "import": "./dist/util/get-reorder-destination-index.js",
+      "require": "./dist/util/get-reorder-destination-index.js"
+    }
+  },
+
+  "typesVersions": {
+    "*": {
+      "closest-edge": ["dist/closest-edge.d.ts"],
+      "list-item": ["dist/list-item.d.ts"],
+      "tree-item": ["dist/tree-item.d.ts"],
+      "types": ["dist/types.d.ts"],
+      "util/*": ["dist/util/*"]
+    }
+  },
+
+  "dependencies": {
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
+    "@babel/runtime": "^7.0.0"
+  },
+
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "rimraf": "^6.0.1",
+    "eslint": "^9.33.0"
+  },
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "npm run build",
+    "rebuild": "npm run clean && npm run build"
+  }
+}

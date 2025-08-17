@@ -1,0 +1,92 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop-drop-indicator",
+  "version": "1.0.0",
+  "description": "Solid components that show where a drag will drop (lines, boxes, borders)",
+  "keywords": [
+    "pragmatic-drag-and-drop",
+    "drag-and-drop",
+    "drop-indicator",
+    "solid",
+    "solidjs",
+    "a11y",
+    "accessibility"
+  ],
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+  "repository": { "type": "git", "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git" },
+  "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
+  "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
+
+  "sideEffects": ["**/*.css", "**/*.compiled.css"],
+
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./border": {
+      "types": "./dist/border.d.ts",
+      "import": "./dist/border.js",
+      "require": "./dist/border.cjs"
+    },
+    "./box": {
+      "types": "./dist/box.d.ts",
+      "import": "./dist/box.js",
+      "require": "./dist/box.cjs"
+    },
+    "./group": {
+      "types": "./dist/group.d.ts",
+      "import": "./dist/group.js",
+      "require": "./dist/group.cjs"
+    },
+    "./list-item": {
+      "types": "./dist/list-item.d.ts",
+      "import": "./dist/list-item.js",
+      "require": "./dist/list-item.cjs"
+    },
+    "./types": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/types.js",
+      "require": "./dist/types.cjs"
+    },
+    "./tree-item": {
+      "types": "./dist/tree-item.d.ts",
+      "import": "./dist/tree-item.js",
+      "require": "./dist/tree-item.cjs"
+    }
+  },
+
+  "dependencies": {
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
+    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.0",
+    "@atlaskit/tokens": "6.0.0",
+    "@babel/runtime": "^7.0.0"
+  },
+
+  "peerDependencies": {
+    "solid-js": "^1.9.7"
+  },
+
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "tsup": "^8.5.0",
+    "rimraf": "^6.0.1",
+    "eslint": "^9.33.0"
+  },
+
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsup --config tsup.config.ts",
+    "prepublishOnly": "npm run build",
+    "rebuild": "npm run clean && npm run build"
+  },
+
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" }
+}

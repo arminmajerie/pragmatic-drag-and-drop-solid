@@ -1,0 +1,14 @@
+// packages/core/tsconfig.json
+
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "types": ["node"],
+    "declaration": true,
+    "sourceMap": true
+  },
+  "include": ["src"]
+}

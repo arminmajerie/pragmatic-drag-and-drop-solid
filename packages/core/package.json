@@ -1,0 +1,177 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop",
+  "version": "1.0.0",
+  "description": "SolidJS port of Pragmatic drag and drop - enabling fast drag and drop for any experience on any tech stack",
+  "repository": "https://github.com/arminmajerie/pragmatic-drag-and-drop",
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": true,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+
+    "./types": {
+      "types": "./dist/types.d.ts"
+    },
+    "./entry-point/types": {
+      "types": "./dist/entry-point/types.d.ts"
+    },
+
+    "./element/adapter": {
+      "types": "./dist/entry-point/element/adapter.d.ts",
+      "import": "./dist/entry-point/element/adapter.js",
+      "require": "./dist/entry-point/element/adapter.cjs"
+    },
+    "./element/set-custom-native-drag-preview": {
+      "types": "./dist/entry-point/element/set-custom-native-drag-preview.d.ts",
+      "import": "./dist/entry-point/element/set-custom-native-drag-preview.js",
+      "require": "./dist/entry-point/element/set-custom-native-drag-preview.cjs"
+    },
+    "./element/pointer-outside-of-preview": {
+      "types": "./dist/entry-point/element/pointer-outside-of-preview.d.ts",
+      "import": "./dist/entry-point/element/pointer-outside-of-preview.js",
+      "require": "./dist/entry-point/element/pointer-outside-of-preview.cjs"
+    },
+    "./element/center-under-pointer": {
+      "types": "./dist/entry-point/element/center-under-pointer.d.ts",
+      "import": "./dist/entry-point/element/center-under-pointer.js",
+      "require": "./dist/entry-point/element/center-under-pointer.cjs"
+    },
+    "./element/preserve-offset-on-source": {
+      "types": "./dist/entry-point/element/preserve-offset-on-source.d.ts",
+      "import": "./dist/entry-point/element/preserve-offset-on-source.js",
+      "require": "./dist/entry-point/element/preserve-offset-on-source.cjs"
+    },
+    "./element/disable-native-drag-preview": {
+      "types": "./dist/entry-point/element/disable-native-drag-preview.d.ts",
+      "import": "./dist/entry-point/element/disable-native-drag-preview.js",
+      "require": "./dist/entry-point/element/disable-native-drag-preview.cjs"
+    },
+    "./element/scroll-just-enough-into-view": {
+      "types": "./dist/entry-point/element/scroll-just-enough-into-view.d.ts",
+      "import": "./dist/entry-point/element/scroll-just-enough-into-view.js",
+      "require": "./dist/entry-point/element/scroll-just-enough-into-view.cjs"
+    },
+    "./element/format-urls-for-external": {
+      "types": "./dist/entry-point/element/format-urls-for-external.d.ts",
+      "import": "./dist/entry-point/element/format-urls-for-external.js",
+      "require": "./dist/entry-point/element/format-urls-for-external.cjs"
+    },
+    "./element/block-dragging-to-iframes": {
+      "types": "./dist/entry-point/element/block-dragging-to-iframes.d.ts",
+      "import": "./dist/entry-point/element/block-dragging-to-iframes.js",
+      "require": "./dist/entry-point/element/block-dragging-to-iframes.cjs"
+    },
+
+    "./external/adapter": {
+      "types": "./dist/entry-point/external/adapter.d.ts",
+      "import": "./dist/entry-point/external/adapter.js",
+      "require": "./dist/entry-point/external/adapter.cjs"
+    },
+    "./external/file": {
+      "types": "./dist/entry-point/external/file.d.ts",
+      "import": "./dist/entry-point/external/file.js",
+      "require": "./dist/entry-point/external/file.cjs"
+    },
+    "./external/html": {
+      "types": "./dist/entry-point/external/html.d.ts",
+      "import": "./dist/entry-point/external/html.js",
+      "require": "./dist/entry-point/external/html.cjs"
+    },
+    "./external/text": {
+      "types": "./dist/entry-point/external/text.d.ts",
+      "import": "./dist/entry-point/external/text.js",
+      "require": "./dist/entry-point/external/text.cjs"
+    },
+    "./external/url": {
+      "types": "./dist/entry-point/external/url.d.ts",
+      "import": "./dist/entry-point/external/url.js",
+      "require": "./dist/entry-point/external/url.cjs"
+    },
+    "./external/some": {
+      "types": "./dist/entry-point/external/some.d.ts",
+      "import": "./dist/entry-point/external/some.js",
+      "require": "./dist/entry-point/external/some.cjs"
+    },
+
+
+    "./private/get-element-from-point-without-honey-pot": {
+      "types": "./dist/entry-point/private/get-element-from-point-without-honey-pot.d.ts",
+      "import": "./dist/entry-point/private/get-element-from-point-without-honey-pot.js",
+      "require": "./dist/entry-point/private/get-element-from-point-without-honey-pot.cjs"
+    },
+
+
+    "./text-selection/adapter": {
+      "types": "./dist/entry-point/text-selection/adapter.d.ts",
+      "import": "./dist/entry-point/text-selection/adapter.js",
+      "require": "./dist/entry-point/text-selection/adapter.cjs"
+    },
+
+
+    "./combine": {
+      "types": "./dist/entry-point/combine.d.ts",
+      "import": "./dist/entry-point/combine.js",
+      "require": "./dist/entry-point/combine.cjs"
+    },
+    "./once": {
+      "types": "./dist/entry-point/once.d.ts",
+      "import": "./dist/entry-point/once.js",
+      "require": "./dist/entry-point/once.cjs"
+    },
+    "./reorder": {
+      "types": "./dist/entry-point/reorder.d.ts",
+      "import": "./dist/entry-point/reorder.js",
+      "require": "./dist/entry-point/reorder.cjs"
+    },
+    "./prevent-unhandled": {
+      "types": "./dist/entry-point/prevent-unhandled.d.ts",
+      "import": "./dist/entry-point/prevent-unhandled.js",
+      "require": "./dist/entry-point/prevent-unhandled.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "types": ["dist/types.d.ts"],
+      "entry-point/types": ["dist/entry-point/types.d.ts"],
+
+      "element/*": ["dist/entry-point/element/*"],
+      "external/*": ["dist/entry-point/external/*"],
+      "private/*": ["dist/entry-point/private/*"],
+      "text-selection/*": ["dist/entry-point/text-selection/*"],
+
+      "combine": ["dist/entry-point/combine.d.ts"],
+      "once": ["dist/entry-point/once.d.ts"],
+      "reorder": ["dist/entry-point/reorder.d.ts"],
+      "prevent-unhandled": ["dist/entry-point/prevent-unhandled.d.ts"]
+    }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0",
+    "bind-event-listener": "^3.0.0",
+    "raf-schd": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "5.9.2",
+    "vite": "^5.1.5",
+    "vite-plugin-solid": "^2.11.8"
+  },
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "rebuild": "npm run clean && npm run build"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop-auto-scroll",
+  "version": "1.0.0",
+  "description": "Optional package that enables automatic scrolling during a drag operation (Solid-compatible)",
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git"
+  },
+  "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
+  "bugs": {
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues"
+  },
+
+  "sideEffects": false,
+
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./element": {
+      "types": "./dist/entry-point/element.d.ts",
+      "import": "./dist/entry-point/element.js",
+      "require": "./dist/entry-point/element.cjs"
+    },
+    "./external": {
+      "types": "./dist/entry-point/external.d.ts",
+      "import": "./dist/entry-point/external.js",
+      "require": "./dist/entry-point/external.cjs"
+    },
+    "./text-selection": {
+      "types": "./dist/entry-point/text-selection.d.ts",
+      "import": "./dist/entry-point/text-selection.js",
+      "require": "./dist/entry-point/text-selection.cjs"
+    },
+    "./unsafe-overflow/element": {
+      "types": "./dist/entry-point/unsafe-overflow/element.d.ts",
+      "import": "./dist/entry-point/unsafe-overflow/element.js",
+      "require": "./dist/entry-point/unsafe-overflow/element.cjs"
+    },
+    "./unsafe-overflow/external": {
+      "types": "./dist/entry-point/unsafe-overflow/external.d.ts",
+      "import": "./dist/entry-point/unsafe-overflow/external.js",
+      "require": "./dist/entry-point/unsafe-overflow/external.cjs"
+    },
+    "./unsafe-overflow/text-selection": {
+      "types": "./dist/entry-point/unsafe-overflow/text-selection.d.ts",
+      "import": "./dist/entry-point/unsafe-overflow/text-selection.js",
+      "require": "./dist/entry-point/unsafe-overflow/text-selection.cjs"
+    }
+  },
+
+  "typesVersions": {
+    "*": {
+      "element": ["dist/entry-point/element.d.ts"],
+      "external": ["dist/entry-point/external.d.ts"],
+      "text-selection": ["dist/entry-point/text-selection.d.ts"],
+      "unsafe-overflow/*": ["dist/entry-point/unsafe-overflow/*"]
+    }
+  },
+
+  "dependencies": {
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
+    "@babel/runtime": "^7.0.0"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.9.7"
+  },
+
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "tsup": "^8.5.0",
+    "rimraf": "^6.0.1",
+    "eslint": "^9.33.0"
+  },
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsup --config tsup.config.ts",
+    "rebuild": "npm run clean && npm run build"
+  }
+}

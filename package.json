@@ -1,0 +1,33 @@
+{
+  "name": "pragmatic-drag-and-drop-solid",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Solid.js port of Atlassian's Pragmatic Drag and Drop toolchain (framework-agnostic core + Solid UI add-ons)",
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+  "workspaces": ["packages/*"],
+
+  "dependencies": {
+    "tslib": "^2.8.1",
+    "react-beautiful-dnd": "^13.1.1"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2"
+  },
+  "engines": { "node": ">=18.17.0" },
+  "packageManager": "npm@10.0.0",
+
+  "overrides": {
+    "rimraf": "^6.0.1",
+    "glob": "^11.0.3",
+    "eslint": "^9.33.0"
+  },
+  "scripts": {
+    "clean": "npm -ws run clean --if-present",
+    "build": "npm -ws run build --if-present",
+    "prepublishOnly": "npm run build",
+    "rebuild": "npm -ws run rebuild --if-present",
+    "build:ordered": "npm run build -w @arminmajerie/pragmatic-drag-and-drop && npm run build -w @arminmajerie/pragmatic-drag-and-drop-hitbox && npm run build -w @arminmajerie/pragmatic-drag-and-drop-auto-scroll && npm run build -w @arminmajerie/pragmatic-drag-and-drop-drop-indicator && npm run build -w @arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll && npm run build -w @arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration",
+    "rebuild:ordered": "npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-hitbox && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-auto-scroll && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-drop-indicator && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration"
+  }
+}

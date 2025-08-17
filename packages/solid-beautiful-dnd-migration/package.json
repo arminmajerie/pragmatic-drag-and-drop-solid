@@ -1,0 +1,56 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration",
+  "version": "1.0.0",
+  "description": "Rapid migration helpers from react-beautiful-dnd to Pragmatic Drag and Drop (Solid-compatible)",
+  "keywords": ["drag-and-drop", "migration", "react-beautiful-dnd", "pragmatic-dnd", "solid", "solidjs"],
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+
+  "repository": { "type": "git", "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git" },
+  "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
+  "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
+
+  "sideEffects": ["*.compiled.css"],
+
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+
+  "dependencies": {
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
+    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.0",
+    "@arminmajerie/pragmatic-drag-and-drop-auto-scroll": "1.0.0",
+    "@babel/runtime": "^7.0.0",
+    "bind-event-listener": "^3.0.0",
+    "tiny-invariant": "^1.2.0",
+    "react-beautiful-dnd": "^13.1.1"
+  },
+
+  "peerDependencies": {
+    "solid-js": "^1.9.7"
+  },
+
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "tsup": "^8.5.0",
+    "rimraf": "^6.0.1",
+    "eslint": "^9.33.0"
+  },
+
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsup --config tsup.config.ts",
+    "prepublishOnly": "npm run build",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" }
+}

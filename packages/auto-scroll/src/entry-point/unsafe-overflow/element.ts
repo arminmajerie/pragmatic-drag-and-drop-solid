@@ -1,0 +1,10 @@
+// packages/auto-scroll/src/entry-point/unsafe-overflow/element.ts
+import { monitorForElements } from '@arminmajerie/pragmatic-drag-and-drop/element/adapter';
+
+import { makeApi } from '../../unsafe-overflow/make-api';
+
+const api = makeApi({ monitor: monitorForElements });
+
+export const unsafeOverflowAutoScrollForElements = api.unsafeOverflowAutoScroll;
+
+

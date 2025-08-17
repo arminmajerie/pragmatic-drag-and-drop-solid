@@ -1,0 +1,52 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop-flourish",
+  "version": "1.0.0",
+  "description": "Optional visual flourish utilities for drag and drop (Solid-friendly)",
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
+  "repository": { "type": "git", "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git" },
+  "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
+  "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
+
+  "sideEffects": false,
+
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./trigger-post-move-flash": {
+      "types": "./dist/types/trigger-post-move-flash.d.ts",
+      "import": "./dist/esm/trigger-post-move-flash.js",
+      "require": "./dist/cjs/trigger-post-move-flash.js"
+    }
+  },
+
+  "peerDependencies": {
+    "solid-js": ">=1.7"
+  },
+  "peerDependenciesMeta": {
+    "solid-js": { "optional": true }
+  },
+
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "tsup": "^8.5.0",
+    "rimraf": "^6.0.1",
+    "eslint": "^9.33.0",
+    "solid-js": "^1.8.0"
+  },
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsup --config tsup.config.ts",
+    "prepublishOnly": "npm run build",
+    "rebuild": "npm run clean && npm run build"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop-live-region",
+  "version": "1.0.0",
+  "description": "Screen reader messaging (ARIA live region) utilities for alternative drag-and-drop flows (Solid-compatible)",
+  "keywords": ["pragmatic-drag-and-drop", "drag-and-drop", "a11y", "live-region", "solid", "solidjs"],
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+  "repository": { "type": "git", "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git" },
+  "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
+  "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
+
+  "sideEffects": false,
+
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+
+  "peerDependencies": {
+    "solid-js": ">=1.7"
+  },
+  "peerDependenciesMeta": {
+    "solid-js": { "optional": true }
+  },
+
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^9.33.0",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "5.9.2",
+    "solid-js": "^1.8.0"
+  },
+
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsup --config tsup.config.ts",
+    "prepublishOnly": "npm run build",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" }
+}

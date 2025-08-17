@@ -1,0 +1,57 @@
+{
+  "name": "@arminmajerie/pragmatic-drag-and-drop-accessibility",
+  "version": "1.0.0",
+  "description": "Solid components to assist with accessible drag-and-drop (ARIA live region + drag handle)",
+  "keywords": ["drag-and-drop", "pragmatic-drag-and-drop", "accessibility", "a11y", "solid", "solidjs"],
+  "author": "Armin Majerie",
+  "license": "Apache-2.0",
+
+  "repository": { "type": "git", "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git" },
+  "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
+  "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
+
+  "sideEffects": ["*.css"],
+
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./drag-handle-button": {
+      "types": "./dist/drag-handle-button.d.ts",
+      "import": "./dist/drag-handle-button.js",
+      "require": "./dist/drag-handle-button.cjs"
+    },
+    "./drag-handle-button-small": {
+      "types": "./dist/drag-handle-button-small.d.ts",
+      "import": "./dist/drag-handle-button-small.js",
+      "require": "./dist/drag-handle-button-small.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+
+  "dependencies": {},
+  "peerDependencies": {
+    "solid-js": "^1.9.7"
+  },
+  "devDependencies": {
+    "typescript": "5.9.2",
+    "tsup": "^8.5.0",
+    "rimraf": "^6.0.1",
+    "eslint": "^9.33.0"
+  },
+
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsup --config tsup.config.ts",
+    "prepublishOnly": "npm run build",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" }
+}

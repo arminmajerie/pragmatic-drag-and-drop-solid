@@ -1,0 +1,19 @@
+/* Default tokens (users can override anywhere later in their app CSS) */
+:root {
+  --pddd-color-background-neutral: #f1f2f4;
+  --pddd-color-background-neutral-subtle: transparent;
+  --pddd-color-background-selected: #0c66e4;
+  --pddd-color-text: #172b4d;
+  --pddd-color-text-selected: #ffffff;
+}
+
+/* Optional sugar: a couple of sensible interaction styles */
+.pddd-DragHandleButton {
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.pddd-DragHandleButton:hover {
+  filter: brightness(0.98);
+}
+.pddd-DragHandleButton:active {
+  cursor: grabbing;
+}

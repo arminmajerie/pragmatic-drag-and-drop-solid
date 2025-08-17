@@ -5,8 +5,10 @@
     "outDir": "dist",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": ["vite/client", "solid-js"],
-    "skipLibCheck": true
+    "declaration": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "types": ["node"]
   },
   "include": ["src"]
 }

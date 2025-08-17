@@ -1,7 +1,6 @@
+// packages/solid-beautiful-dnd-migration/src/utils/get-best-cross-axis-droppable.tsx
 import type { DroppableId } from '@arminmajerie/pragmatic-drag-and-drop/types';
-
 import type { DroppableRegistry } from '../drag-drop-context/droppable-registry';
-
 import { attributes, customAttributes, getAttribute } from './attributes';
 import { findElementAll } from './find-element';
 
@@ -71,7 +70,9 @@ export function getBestCrossAxisDroppable({
 	 *
 	 * Using `.at()` provides a safer type, making us handle the `undefined` case.
 	 */
-	const bestCandidate = isMovingForward ? candidates.at(0) : candidates.at(-1);
+  const bestCandidate = isMovingForward
+    ? candidates[0]
+    : (candidates.length ? candidates[candidates.length - 1] : undefined);
 
-	return bestCandidate ?? null;
+  return bestCandidate ?? null;
 }

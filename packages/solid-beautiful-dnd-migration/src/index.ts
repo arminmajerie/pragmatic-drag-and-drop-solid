@@ -1,3 +1,4 @@
+// packages/solid-beautiful-dnd-migration/src/index.ts
 export { DragDropContext } from './drag-drop-context';
 export { Draggable } from './draggable';
 export { Droppable } from './droppable';

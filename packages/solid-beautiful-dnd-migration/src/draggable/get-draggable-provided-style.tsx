@@ -1,13 +1,12 @@
+// packages/solid-beautiful-dnd-migration/src/utils/get-best-cross-axis-droppable.tsx
 import type { DraggingStyle, NotDraggingStyle } from '@arminmajerie/pragmatic-drag-and-drop/types';
-
 import type { DraggableDimensions } from '../hooks/use-captured-dimensions';
-
 import { zIndex } from './constants';
 import type { DraggablePreviewOffset, DraggableState } from './state';
 
 export const notDraggingStyle: NotDraggingStyle = {
-	transform: undefined,
-	transition: undefined,
+  transform: undefined,
+  transition: null,
 };
 
 const baseDraggingStyle = {

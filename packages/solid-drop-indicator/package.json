@@ -18,48 +18,47 @@
   "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
 
   "sideEffects": ["**/*.css", "**/*.compiled.css"],
-
   "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
 
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
 
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.js"
     },
     "./border": {
       "types": "./dist/border.d.ts",
       "import": "./dist/border.js",
-      "require": "./dist/border.cjs"
+      "require": "./dist/border.js"
     },
     "./box": {
       "types": "./dist/box.d.ts",
       "import": "./dist/box.js",
-      "require": "./dist/box.cjs"
+      "require": "./dist/box.js"
     },
     "./group": {
       "types": "./dist/group.d.ts",
       "import": "./dist/group.js",
-      "require": "./dist/group.cjs"
+      "require": "./dist/group.js"
     },
     "./list-item": {
       "types": "./dist/list-item.d.ts",
       "import": "./dist/list-item.js",
-      "require": "./dist/list-item.cjs"
+      "require": "./dist/list-item.js"
     },
     "./types": {
       "types": "./dist/types.d.ts",
       "import": "./dist/types.js",
-      "require": "./dist/types.cjs"
+      "require": "./dist/types.js"
     },
     "./tree-item": {
       "types": "./dist/tree-item.d.ts",
       "import": "./dist/tree-item.js",
-      "require": "./dist/tree-item.cjs"
+      "require": "./dist/tree-item.js"
     }
   },
 
@@ -69,21 +68,19 @@
     "@atlaskit/tokens": "6.0.0",
     "@babel/runtime": "^7.0.0"
   },
-
   "peerDependencies": {
     "solid-js": "^1.9.7"
   },
 
   "devDependencies": {
     "typescript": "5.9.2",
-    "tsup": "^8.5.0",
     "rimraf": "^6.0.1",
     "eslint": "^9.33.0"
   },
 
   "scripts": {
     "clean": "rimraf dist",
-    "build": "tsup --config tsup.config.ts",
+    "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
     "rebuild": "npm run clean && npm run build"
   },

@@ -5,7 +5,6 @@
   "keywords": ["drag-and-drop", "autoscroll", "pragmatic-dnd", "solid", "solidjs"],
   "author": "Armin Majerie",
   "license": "Apache-2.0",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git"
@@ -17,7 +16,7 @@
 
   "sideEffects": false,
 
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
 
@@ -25,7 +24,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/index.js"
     }
   },
 
@@ -40,18 +39,18 @@
   },
 
   "devDependencies": {
-    "typescript": "5.9.2",
-    "tsup": "^8.5.0",
+    "eslint": "^9.33.0",
     "rimraf": "^6.0.1",
-    "eslint": "^9.33.0"
+    "typescript": "5.9.2"
   },
 
   "scripts": {
     "clean": "rimraf dist",
-    "build": "tsup --config tsup.config.ts",
+    "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
     "rebuild": "npm run clean && npm run build"
   },
+
   "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
   "publishConfig": {
     "access": "public",

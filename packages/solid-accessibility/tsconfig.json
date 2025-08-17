@@ -3,9 +3,11 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
+    "skipLibCheck": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "skipLibCheck": true
+    "declaration": true,
+    "sourceMap": true
   },
   "include": ["src"]
 }

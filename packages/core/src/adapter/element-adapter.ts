@@ -1,5 +1,5 @@
+// packages/core/src/adapter/element-adapter.ts
 import { bind } from 'bind-event-listener';
-
 import { getElementFromPointWithoutHoneypot } from '../honey-pot-fix/get-element-from-point-without-honey-pot';
 import { makeHoneyPotFix } from '../honey-pot-fix/make-honey-pot-fix';
 import {
@@ -327,6 +327,30 @@ const adapter = makeAdapter<ElementDragType>({
 
 export const dropTargetForElements = adapter.dropTarget;
 export const monitorForElements = adapter.monitor;
+export { dropTargetWithPolicy } from '../element/drop-target-with-policy';
+export { draggableWithPolicy } from '../element/draggable-with-policy';
+export type {
+  Edge,
+  DragMeta,
+  CanvasCaps,
+  CanvasChildren,
+  PolicyContext,
+  SourcePolicy,
+  DropPolicy,
+  DropTargetWithPolicyOptions,
+  DestContext,
+  PerformArgs,
+  CanStartArgs,
+  DestSnapshot,
+  PerformResult,
+  ProposedPlacement,
+  XMLConfigurationAPI
+} from '../element/drop-target-with-policy';
+
+export type {
+  DraggableWithPolicyOptions
+} from '../element/draggable-with-policy';
+
 
 export function draggable(args: DraggableArgs): CleanupFn {
 	// Guardrail: warn if the drag handle is not contained in draggable element

@@ -111,9 +111,9 @@ export function isLeavingWindowInSafari({ dragLeave }: { dragLeave: DragEvent })
 					if (!state.isOverWindow && state.enterCount === 0) {
 						// Patching the `event` object
 						// The `event` object is shared with all event listeners for the event
-						// @ts-expect-error: adding property to the event object
-						event[symbols.isEnteringWindow] = true;
-					}
+            Reflect.defineProperty(event as object, symbols.isEnteringWindow, { value: true });
+
+          }
 					state.isOverWindow = true;
 					state.enterCount++;
 				},
@@ -125,9 +125,9 @@ export function isLeavingWindowInSafari({ dragLeave }: { dragLeave: DragEvent })
 					if (state.isOverWindow && state.enterCount === 0) {
 						// Patching the `event` object as it is shared with all event listeners
 						// The `event` object is shared with all event listeners for the event
-						// @ts-expect-error: adding property to the event object
-						event[symbols.isLeavingWindow] = true;
-						state.isOverWindow = false;
+            Reflect.defineProperty(event as object, symbols.isLeavingWindow, { value: true });
+
+            state.isOverWindow = false;
 					}
 				},
 			},

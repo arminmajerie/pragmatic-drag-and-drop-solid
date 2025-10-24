@@ -8,8 +8,7 @@
   "workspaces": ["packages/*"],
 
   "dependencies": {
-    "tslib": "^2.8.1",
-    "react-beautiful-dnd": "^13.1.1"
+    "tslib": "^2.8.1"
   },
   "devDependencies": {
     "typescript": "5.9.2"
@@ -23,13 +22,26 @@
     "eslint": "^9.33.0"
   },
   "scripts": {
+    "publish:core": "npm publish -w @arminmajerie/pragmatic-drag-and-drop --access public",
+    "publish:hitbox": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-hitbox --access public",
+    "publish:auto-scroll": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-auto-scroll --access public",
+    "publish:drop-indicator": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-drop-indicator --access public",
+    "publish:flourish": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-flourish --access public",
+    "publish:live-region": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-live-region --access public",
+    "publish:accessibility": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-accessibility --access public",
+    "publish:beautiful-autoscroll": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll --access public",
+    "publish:migration": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration --access public",
+
+    "publish:ordered": "npm run publish:core && npm run publish:hitbox && npm run publish:auto-scroll && npm run publish:drop-indicator && npm run publish:flourish && npm run publish:live-region && npm run publish:accessibility && npm run publish:beautiful-autoscroll && npm run publish:migration",
+
+
+
     "clean": "npm -ws run clean --if-present",
     "build": "npm -ws run build --if-present",
     "prepublishOnly": "npm run build",
     "rebuild": "npm -ws run rebuild --if-present",
-
     "build:ordered": "npm run build -w @arminmajerie/pragmatic-drag-and-drop && npm run build -w @arminmajerie/pragmatic-drag-and-drop-hitbox && npm run build -w @arminmajerie/pragmatic-drag-and-drop-auto-scroll && npm run build -w @arminmajerie/pragmatic-drag-and-drop-drop-indicator && npm run build -w @arminmajerie/pragmatic-drag-and-drop-flourish && npm run build -w @arminmajerie/pragmatic-drag-and-drop-live-region && npm run build -w @arminmajerie/pragmatic-drag-and-drop-accessibility && npm run build -w @arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll && npm run build -w @arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration",
-
     "rebuild:ordered": "npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-hitbox && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-auto-scroll && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-drop-indicator && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-flourish && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-live-region && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-accessibility && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll && npm run rebuild -w @arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration"
   }
+
 }

@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rapid migration helpers from react-beautiful-dnd to Pragmatic Drag and Drop (Solid-compatible)",
   "keywords": ["drag-and-drop", "migration", "react-beautiful-dnd", "pragmatic-dnd", "solid", "solidjs"],
   "author": "Armin Majerie",
@@ -25,7 +25,7 @@
 
   "dependencies": {
     "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
-    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.0",
+    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.1",
     "@arminmajerie/pragmatic-drag-and-drop-auto-scroll": "1.0.0",
     "@babel/runtime": "^7.0.0",
     "bind-event-listener": "^3.0.0",

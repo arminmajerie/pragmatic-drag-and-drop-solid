@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-hitbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Attach interaction information to a drop target (Solid-compatible)",
   "author": "Armin Majerie",
   "license": "Apache-2.0",

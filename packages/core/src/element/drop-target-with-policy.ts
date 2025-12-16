@@ -32,7 +32,7 @@ export interface DragMeta {
    * Can be a single number or array for multi-level components (e.g., [2, 5] for RaiseError).
    * Optional; present only if your app emits it.
    */
-  level?: number | number[] | null;
+  level?: number[] | null;
 
   /**
    * Whether this drag originates from a palette/new item rather than an existing canvas item.

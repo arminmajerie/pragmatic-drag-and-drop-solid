@@ -132,7 +132,9 @@ export function makeDropTarget<DragType extends AllDragTypes>({
     // If dropping is not allowed:
     // - topmostOnly (default): stop here → no active target
     // - bubbleToFirst: climb to the next ancestor drop target and try again
-    if (args.canDrop && !args.canDrop(feedback)) {
+    const canDropResult = args.canDrop ? args.canDrop(feedback) : true;
+    
+    if (args.canDrop && !canDropResult) {
       if (bubbleEnabled) {
         // climb starting from the parent of the rejected zone
         const parentStart: Element | null = (args.element as Element)?.parentElement ?? closest.parentElement;

@@ -292,25 +292,36 @@ export interface DropTargetWithPolicyOptions {
 
 // ---------- internal helpers ----------
 function toDragMeta(source: any): DragMeta {
-  const srcEl: Element = (source?.data?.element as Element) ?? source?.element;
+  if(source == null || source === undefined) {
+    return { id: '', tagName: '' };
+  }
+
+  if(source.data == null || source.data === undefined) {
+    return { id: '', tagName: '' };
+  }
+
+  const srcEl: Element = (source.data.element as Element) ?? source.element;
   const id =
-    source?.data?.id ??
+    source.data.id ??
     (srcEl && 'id' in srcEl ? (srcEl as HTMLElement).id : '') ??
     '';
   const tagName: string =
-    source?.data?.tagName ??
+    source.data.tagName ??
     (srcEl?.tagName ?? '').toString();
+
   const level: number[] | null =
-    source?.data?.level ??
+    source.data.level ??
     (srcEl?.getAttribute?.('level') ?? null);
   const isNew: boolean =
-    source?.data?.isNew === true ||
+    source.data.isNew === true ||
     srcEl?.querySelector?.('isNew')?.textContent === 'true';
-  const requiresFirstIndex: boolean = source?.data?.requiresFirstIndex === true;
+  const requiresFirstIndex: boolean = source.data.requiresFirstIndex === true;
   const parentCanvasId: string | null =
-    source?.data?.parentCanvasId ??
+    source.data.parentCanvasId ??
     srcEl?.querySelector?.('parentId')?.textContent ??
     null;
+  const dropStrategy: 'bubbleToFirst' | 'topmostOnly' = source.data.dropStrategy ?? 'topmostOnly';
+
 
   return {
     id,
@@ -320,6 +331,7 @@ function toDragMeta(source: any): DragMeta {
     requiresFirstIndex,
     element: srcEl,
     parentCanvasId,
+    dropStrategy
   };
 }
 

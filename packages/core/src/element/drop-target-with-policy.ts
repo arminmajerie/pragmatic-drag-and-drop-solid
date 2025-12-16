@@ -300,7 +300,7 @@ function toDragMeta(source: any): DragMeta {
   const tagName: string =
     source?.data?.tagName ??
     (srcEl?.tagName ?? '').toString();
-  const level: number | null =
+  const level: number[] | null =
     source?.data?.level ??
     (srcEl?.getAttribute?.('level') ?? null);
   const isNew: boolean =

@@ -29,9 +29,10 @@ export interface DragMeta {
 
   /**
    * Logical level of the item in your domain model (e.g., 1 for Level1, 2 for Level2).
+   * Can be a single number or array for multi-level components (e.g., [2, 5] for RaiseError).
    * Optional; present only if your app emits it.
    */
-  level?: number | null;
+  level?: number | number[] | null;
 
   /**
    * Whether this drag originates from a palette/new item rather than an existing canvas item.
@@ -192,29 +193,14 @@ export interface XMLConfigurationAPI {
   // ---- Lookups / reactive lists ----
   getElementById(id: string): Element | null;
   children$(containerId: string): Accessor<Element[]>;
-
-  // ---- Mutations used by DnD executors ----
-  insertNewNodeFirstInChild(parentId: string, nodeToInsert: Element): Promise<boolean>;
-  insertNewNodeLastInChild(parentId: string, nodeToInsert: Element): Promise<boolean>;
-  addNewNodeBeforeNode(referenceId: string, nodeToInsert: Element): Promise<boolean>;
-  addNewNodeAfterNode(referenceId: string, nodeToInsert: Element): Promise<boolean>;
-  moveNodeWithEdge(
-    sourceUuid: string,
-    destinationParentUuid: string,
-    destinationSiblingUuid: string | null,
-    destinationClosestEdge: Edge
-  ): Promise<boolean>;
-  reorderNode(sourceId: string, destinationId: string): Promise<boolean>;
+  getComponentChildren(parentEl: Element | null): Element[];
 
   // ---- Canvas ancestry helpers (perf-safe) ----
   topCanvasOf(nodeId: string): string | null;
-  areInSameTopCanvas(aId: string | null | undefined, bId: string | null | undefined): boolean;
 
   // ---- Reactivity / persistence knobs ----
   bump(id?: string | null): void;
   batch<T>(fn: () => T): T;
-  save(): Promise<boolean>;
-  saveCompact(): Promise<boolean>;
 }
 
 export interface PerformResult {

@@ -11,7 +11,8 @@
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "typescript": "5.9.2"
+    "typescript": "5.9.2",
+    "sucrase": "3.35.1"
   },
   "engines": { "node": ">=18.17.0" },
   "packageManager": "npm@10.0.0",
@@ -19,6 +20,7 @@
   "overrides": {
     "rimraf": "^6.0.1",
     "glob": "^11.0.3",
+    "sucrase": "3.35.1",
     "eslint": "^9.33.0"
   },
   "scripts": {
@@ -31,7 +33,6 @@
     "publish:accessibility": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-accessibility --access public",
     "publish:beautiful-autoscroll": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll --access public",
     "publish:migration": "npm publish -w @arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration --access public",
-
     "publish:ordered": "npm run publish:core && npm run publish:hitbox && npm run publish:auto-scroll && npm run publish:drop-indicator && npm run publish:flourish && npm run publish:live-region && npm run publish:accessibility && npm run publish:beautiful-autoscroll && npm run publish:migration",
 
 

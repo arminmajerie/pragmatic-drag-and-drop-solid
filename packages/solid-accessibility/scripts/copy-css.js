@@ -8,7 +8,7 @@ const dest = path.join(outDir, 'styles.css');
 if (fs.existsSync(src)) {
   fs.mkdirSync(outDir, { recursive: true });
   fs.copyFileSync(src, dest);
-  console.log('Copied styles.css -> dist/styles.css');
+  0&&console['log']('Copied styles.css -> dist/styles.css');
 } else {
-  console.log('styles.css not found, skipping copy.');
+  0&&console['log']('styles.css not found, skipping copy.');
 }

@@ -79,7 +79,7 @@ export type ExternalDragPayload = {
 	 *
 	 * @example
 	 *
-	 * console.log(source.types);
+	 * 0&&console['log'](source.types);
 	 * // → ["text/plain", "text/html"]
 	 */
 	types: NativeMediaType[];

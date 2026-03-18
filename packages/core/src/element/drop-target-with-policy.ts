@@ -424,7 +424,7 @@ export function dropTargetWithPolicy(opts: DropTargetWithPolicyOptions) {
 
         if (debugLog) {
           // eslint-disable-next-line no-console
-          console.log('[DnD] canDrop decision', {
+          0&&console['log']('[DnD] canDrop decision', {
             srcTag: ctx.dragMeta.tagName,
             dropKind,
             destCaps: ctx.destCaps,

@@ -29,3 +29,20 @@ yarn-error.log
 /docs/
 /generated/
 /package-lock.json
+
+# Local environment / secrets
+.env.*
+!.env.example
+!.env.*.example
+.npmrc
+!.npmrc.example
+
+# Extra package-manager / tool output
+*.tsbuildinfo
+*.tgz
+.cache/
+.vite/
+.turbo/
+.nyc_output/
+pnpm-debug.log*
+npm-debug.log*

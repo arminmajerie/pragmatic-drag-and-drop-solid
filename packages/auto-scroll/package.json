@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-auto-scroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Optional package that enables automatic scrolling during a drag operation (Solid-compatible)",
   "author": "Armin Majerie",
   "license": "Apache-2.0",
@@ -71,7 +71,7 @@
   },
 
   "dependencies": {
-    "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.1",
     "@babel/runtime": "^7.0.0"
   },
   "peerDependencies": {

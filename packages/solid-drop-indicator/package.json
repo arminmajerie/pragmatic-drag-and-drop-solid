@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-drop-indicator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Solid components that show where a drag will drop (lines, boxes, borders)",
   "keywords": [
     "pragmatic-drag-and-drop",
@@ -63,8 +63,8 @@
   },
 
   "dependencies": {
-    "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
-    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.0",
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.1",
+    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.2",
     "@atlaskit/tokens": "6.0.0",
     "@babel/runtime": "^7.0.0"
   },

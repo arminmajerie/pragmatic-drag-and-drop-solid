@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SolidJS port of Pragmatic drag and drop - enabling fast drag and drop for any experience on any tech stack",
   "repository": "https://github.com/arminmajerie/pragmatic-drag-and-drop",
   "author": "Armin Majerie",
@@ -165,7 +165,7 @@
     "rimraf": "^6.0.1",
     "tsup": "^8.5.0",
     "typescript": "5.9.2",
-    "vite": "^5.4.21",
+    "vite": "^6.4.2",
     "vite-plugin-solid": "^2.11.8"
   },
   "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],

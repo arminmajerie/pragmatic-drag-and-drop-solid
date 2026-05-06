@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatic scrolling during a drag operation (port of react-beautiful-dnd autoscroll) – Solid-compatible",
   "keywords": ["drag-and-drop", "autoscroll", "pragmatic-dnd", "solid", "solidjs"],
   "author": "Armin Majerie",
@@ -29,7 +29,7 @@
   },
 
   "dependencies": {
-    "@arminmajerie/pragmatic-drag-and-drop": "1.0.0",
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.1",
     "@babel/runtime": "^7.0.0",
     "css-box-model": "^1.2.0"
   },

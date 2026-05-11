@@ -162,15 +162,14 @@
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
-    "rimraf": "^6.0.1",
     "tsup": "^8.5.0",
     "typescript": "5.9.2",
     "vite": "^6.4.2",
     "vite-plugin-solid": "^2.11.8"
   },
-  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "files": ["dist", "src", "README.md", "LICENSE.md", "NOTICE.md"],
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",
     "rebuild": "npm run clean && npm run build"
   }

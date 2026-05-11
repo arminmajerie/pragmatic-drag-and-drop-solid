@@ -39,12 +39,11 @@
   "dependencies": {},
   "devDependencies": {
     "eslint": "^9.33.0",
-    "rimraf": "^6.0.1",
     "typescript": "5.9.2"
   },
 
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
     "rebuild": "npm run clean && npm run build"

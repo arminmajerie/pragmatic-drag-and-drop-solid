@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SolidJS port of Pragmatic drag and drop - enabling fast drag and drop for any experience on any tech stack",
   "repository": "https://github.com/arminmajerie/pragmatic-drag-and-drop",
   "author": "Armin Majerie",
@@ -18,14 +18,12 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-
     "./types": {
       "types": "./dist/types.d.ts"
     },
     "./entry-point/types": {
       "types": "./dist/entry-point/types.d.ts"
     },
-
     "./element/adapter": {
       "types": "./dist/entry-point/element/adapter.d.ts",
       "import": "./dist/entry-point/element/adapter.js",
@@ -71,7 +69,6 @@
       "import": "./dist/entry-point/element/block-dragging-to-iframes.js",
       "require": "./dist/entry-point/element/block-dragging-to-iframes.cjs"
     },
-
     "./external/adapter": {
       "types": "./dist/entry-point/external/adapter.d.ts",
       "import": "./dist/entry-point/external/adapter.js",
@@ -102,22 +99,16 @@
       "import": "./dist/entry-point/external/some.js",
       "require": "./dist/entry-point/external/some.cjs"
     },
-
-
     "./private/get-element-from-point-without-honey-pot": {
       "types": "./dist/entry-point/private/get-element-from-point-without-honey-pot.d.ts",
       "import": "./dist/entry-point/private/get-element-from-point-without-honey-pot.js",
       "require": "./dist/entry-point/private/get-element-from-point-without-honey-pot.cjs"
     },
-
-
     "./text-selection/adapter": {
       "types": "./dist/entry-point/text-selection/adapter.d.ts",
       "import": "./dist/entry-point/text-selection/adapter.js",
       "require": "./dist/entry-point/text-selection/adapter.cjs"
     },
-
-
     "./combine": {
       "types": "./dist/entry-point/combine.d.ts",
       "import": "./dist/entry-point/combine.js",
@@ -141,18 +132,36 @@
   },
   "typesVersions": {
     "*": {
-      "types": ["dist/types.d.ts"],
-      "entry-point/types": ["dist/entry-point/types.d.ts"],
-
-      "element/*": ["dist/entry-point/element/*"],
-      "external/*": ["dist/entry-point/external/*"],
-      "private/*": ["dist/entry-point/private/*"],
-      "text-selection/*": ["dist/entry-point/text-selection/*"],
-
-      "combine": ["dist/entry-point/combine.d.ts"],
-      "once": ["dist/entry-point/once.d.ts"],
-      "reorder": ["dist/entry-point/reorder.d.ts"],
-      "prevent-unhandled": ["dist/entry-point/prevent-unhandled.d.ts"]
+      "types": [
+        "dist/types.d.ts"
+      ],
+      "entry-point/types": [
+        "dist/entry-point/types.d.ts"
+      ],
+      "element/*": [
+        "dist/entry-point/element/*"
+      ],
+      "external/*": [
+        "dist/entry-point/external/*"
+      ],
+      "private/*": [
+        "dist/entry-point/private/*"
+      ],
+      "text-selection/*": [
+        "dist/entry-point/text-selection/*"
+      ],
+      "combine": [
+        "dist/entry-point/combine.d.ts"
+      ],
+      "once": [
+        "dist/entry-point/once.d.ts"
+      ],
+      "reorder": [
+        "dist/entry-point/reorder.d.ts"
+      ],
+      "prevent-unhandled": [
+        "dist/entry-point/prevent-unhandled.d.ts"
+      ]
     }
   },
   "dependencies": {
@@ -167,7 +176,13 @@
     "vite": "^6.4.2",
     "vite-plugin-solid": "^2.11.8"
   },
-  "files": ["dist", "src", "README.md", "LICENSE.md", "NOTICE.md"],
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE.md",
+    "NOTICE.md"
+  ],
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",

@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-hitbox",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Attach interaction information to a drop target (Solid-compatible)",
   "author": "Armin Majerie",
   "license": "Apache-2.0",
@@ -16,13 +16,10 @@
   "bugs": {
     "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues"
   },
-
   "sideEffects": false,
-
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -58,27 +55,39 @@
       "require": "./dist/util/get-reorder-destination-index.js"
     }
   },
-
   "typesVersions": {
     "*": {
-      "closest-edge": ["dist/closest-edge.d.ts"],
-      "list-item": ["dist/list-item.d.ts"],
-      "tree-item": ["dist/tree-item.d.ts"],
-      "types": ["dist/types.d.ts"],
-      "util/*": ["dist/util/*"]
+      "closest-edge": [
+        "dist/closest-edge.d.ts"
+      ],
+      "list-item": [
+        "dist/list-item.d.ts"
+      ],
+      "tree-item": [
+        "dist/tree-item.d.ts"
+      ],
+      "types": [
+        "dist/types.d.ts"
+      ],
+      "util/*": [
+        "dist/util/*"
+      ]
     }
   },
-
   "dependencies": {
-    "@arminmajerie/pragmatic-drag-and-drop": "1.0.1",
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.2",
     "@babel/runtime": "^7.0.0"
   },
-
   "devDependencies": {
-    "typescript": "5.9.2",
-    "eslint": "^9.33.0"
+    "eslint": "^9.33.0",
+    "typescript": "5.9.2"
   },
-  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md",
+    "NOTICE.md"
+  ],
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",

@@ -1,6 +1,6 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-drop-indicator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Solid components that show where a drag will drop (lines, boxes, borders)",
   "keywords": [
     "pragmatic-drag-and-drop",
@@ -13,17 +13,27 @@
   ],
   "author": "Armin Majerie",
   "license": "Apache-2.0",
-  "repository": { "type": "git", "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git"
+  },
   "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
-  "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
-
-  "sideEffects": ["**/*.css", "**/*.compiled.css"],
-  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
-
+  "bugs": {
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues"
+  },
+  "sideEffects": [
+    "**/*.css",
+    "**/*.compiled.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md",
+    "NOTICE.md"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -61,29 +71,28 @@
       "require": "./dist/tree-item.js"
     }
   },
-
   "dependencies": {
-    "@arminmajerie/pragmatic-drag-and-drop": "1.0.1",
-    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.2",
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.2",
+    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.3",
     "@atlaskit/tokens": "6.0.0",
     "@babel/runtime": "^7.0.0"
   },
   "peerDependencies": {
     "solid-js": "^1.9.7"
   },
-
   "devDependencies": {
     "@types/node": "^24.3.0",
-    "typescript": "5.9.2",
-    "eslint": "^9.33.0"
+    "eslint": "^9.33.0",
+    "typescript": "5.9.2"
   },
-
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
     "rebuild": "npm run clean && npm run build"
   },
-
-  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" }
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

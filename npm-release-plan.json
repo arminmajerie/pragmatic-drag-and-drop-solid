@@ -1,0 +1,112 @@
+{
+  "generatedAt": "2026-05-11T23:43:57.5959273+02:00",
+  "targets": [
+    "@arminmajerie/pragmatic-drag-and-drop"
+  ],
+  "targetBump": "patch",
+  "dependentBump": "patch",
+  "includeMigrationPackage": true,
+  "packages": [
+    {
+      "name": "@arminmajerie/pragmatic-drag-and-drop",
+      "relativePath": "packages\\core",
+      "oldVersion": "1.0.1",
+      "newVersion": "1.0.2",
+      "bumpType": "patch",
+      "dependencyUpdates": []
+    },
+    {
+      "name": "@arminmajerie/pragmatic-drag-and-drop-auto-scroll",
+      "relativePath": "packages\\auto-scroll",
+      "oldVersion": "1.0.1",
+      "newVersion": "1.0.2",
+      "bumpType": "patch",
+      "dependencyUpdates": [
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop",
+          "section": "dependencies",
+          "from": "1.0.1",
+          "to": "1.0.2"
+        }
+      ]
+    },
+    {
+      "name": "@arminmajerie/pragmatic-drag-and-drop-beautiful-dnd-autoscroll",
+      "relativePath": "packages\\solid-beautiful-dnd-autoscroll",
+      "oldVersion": "1.0.1",
+      "newVersion": "1.0.2",
+      "bumpType": "patch",
+      "dependencyUpdates": [
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop",
+          "section": "dependencies",
+          "from": "1.0.1",
+          "to": "1.0.2"
+        }
+      ]
+    },
+    {
+      "name": "@arminmajerie/pragmatic-drag-and-drop-hitbox",
+      "relativePath": "packages\\hitbox",
+      "oldVersion": "1.0.2",
+      "newVersion": "1.0.3",
+      "bumpType": "patch",
+      "dependencyUpdates": [
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop",
+          "section": "dependencies",
+          "from": "1.0.1",
+          "to": "1.0.2"
+        }
+      ]
+    },
+    {
+      "name": "@arminmajerie/pragmatic-drag-and-drop-drop-indicator",
+      "relativePath": "packages\\solid-drop-indicator",
+      "oldVersion": "1.0.1",
+      "newVersion": "1.0.2",
+      "bumpType": "patch",
+      "dependencyUpdates": [
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop",
+          "section": "dependencies",
+          "from": "1.0.1",
+          "to": "1.0.2"
+        },
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop-hitbox",
+          "section": "dependencies",
+          "from": "1.0.2",
+          "to": "1.0.3"
+        }
+      ]
+    },
+    {
+      "name": "@arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration",
+      "relativePath": "packages\\solid-beautiful-dnd-migration",
+      "oldVersion": "1.0.2",
+      "newVersion": "1.0.3",
+      "bumpType": "patch",
+      "dependencyUpdates": [
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop",
+          "section": "dependencies",
+          "from": "1.0.1",
+          "to": "1.0.2"
+        },
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop-auto-scroll",
+          "section": "dependencies",
+          "from": "1.0.1",
+          "to": "1.0.2"
+        },
+        {
+          "dependency": "@arminmajerie/pragmatic-drag-and-drop-hitbox",
+          "section": "dependencies",
+          "from": "1.0.2",
+          "to": "1.0.3"
+        }
+      ]
+    }
+  ]
+}

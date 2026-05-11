@@ -1,20 +1,31 @@
 {
   "name": "@arminmajerie/pragmatic-drag-and-drop-react-beautiful-dnd-migration",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Rapid migration helpers from react-beautiful-dnd to Pragmatic Drag and Drop (Solid-compatible)",
-  "keywords": ["drag-and-drop", "migration", "react-beautiful-dnd", "pragmatic-dnd", "solid", "solidjs"],
+  "keywords": [
+    "drag-and-drop",
+    "migration",
+    "react-beautiful-dnd",
+    "pragmatic-dnd",
+    "solid",
+    "solidjs"
+  ],
   "author": "Armin Majerie",
   "license": "Apache-2.0",
-  "repository": { "type": "git", "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid.git"
+  },
   "homepage": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid",
-  "bugs": { "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues" },
-
-  "sideEffects": ["*.compiled.css"],
-
+  "bugs": {
+    "url": "https://github.com/arminmajerie/pragmatic-drag-and-drop-solid/issues"
+  },
+  "sideEffects": [
+    "*.compiled.css"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -22,33 +33,36 @@
       "require": "./dist/index.js"
     }
   },
-
   "dependencies": {
-    "@arminmajerie/pragmatic-drag-and-drop": "1.0.1",
-    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.2",
-    "@arminmajerie/pragmatic-drag-and-drop-auto-scroll": "1.0.1",
+    "@arminmajerie/pragmatic-drag-and-drop": "1.0.2",
+    "@arminmajerie/pragmatic-drag-and-drop-auto-scroll": "1.0.2",
+    "@arminmajerie/pragmatic-drag-and-drop-hitbox": "1.0.3",
     "@babel/runtime": "^7.0.0",
     "bind-event-listener": "^3.0.0",
-    "tiny-invariant": "^1.2.0",
-    "react-beautiful-dnd": "^13.1.1"
+    "react-beautiful-dnd": "^13.1.1",
+    "tiny-invariant": "^1.2.0"
   },
-
   "peerDependencies": {
     "solid-js": "^1.9.7"
   },
-
   "devDependencies": {
     "eslint": "^9.33.0",
     "typescript": "5.9.2"
   },
-
   "scripts": {
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
     "rebuild": "npm run clean && npm run build"
   },
-
-  "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],
-  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" }
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE.md",
+    "NOTICE.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
 }

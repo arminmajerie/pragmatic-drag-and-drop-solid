@@ -16,12 +16,19 @@ const packageDirectories = [
   'packages/flourish',
   'packages/live-region',
   'packages/solid-accessibility',
-  'packages/solid-beautiful-dnd-autoscroll',
 ];
 
-const mode = process.argv[2] === 'build' ? 'build' : 'rebuild';
+const supportedModes = new Set(['clean', 'build', 'rebuild']);
+const requestedMode = process.argv[2];
+const mode = supportedModes.has(requestedMode) ? requestedMode : 'rebuild';
 const tempDirectory = mkdtempSync(path.join(tmpdir(), 'pragmatic-dnd-build-'));
 const localTarballs = new Map();
+const dependencySections = [
+  'dependencies',
+  'devDependencies',
+  'peerDependencies',
+  'optionalDependencies',
+];
 
 function logStep(message) {
   process.stdout.write(`\n==> ${message}\n`);
@@ -70,46 +77,94 @@ function packPackage(cwd) {
   return path.join(tempDirectory, packed[0].filename);
 }
 
-function getInternalDependencyTarballs(packageJson) {
-  const dependencySections = [
-    packageJson.dependencies ?? {},
-    packageJson.devDependencies ?? {},
-  ];
-
-  const tarballs = [];
-  for (const section of dependencySections) {
-    for (const dependencyName of Object.keys(section)) {
-      const tarball = localTarballs.get(dependencyName);
-      if (tarball) {
-        tarballs.push(tarball);
-      }
+function getDependencyEntries(packageJson) {
+  const entries = [];
+  for (const sectionName of dependencySections) {
+    const section = packageJson[sectionName] ?? {};
+    for (const [dependencyName, dependencyVersion] of Object.entries(section)) {
+      entries.push({
+        sectionName,
+        dependencyName,
+        dependencyVersion,
+      });
     }
+  }
+
+  return entries;
+}
+
+function getExternalDependencySpecs(packageJson, internalPackageNames) {
+  const specs = [];
+  for (const { dependencyName, dependencyVersion } of getDependencyEntries(packageJson)) {
+    if (internalPackageNames.has(dependencyName)) {
+      continue;
+    }
+
+    specs.push(`${dependencyName}@${dependencyVersion}`);
+  }
+
+  return [...new Set(specs)];
+}
+
+function getInternalDependencyTarballs(packageJson, internalPackageNames) {
+  const tarballs = [];
+  for (const { dependencyName } of getDependencyEntries(packageJson)) {
+    if (!internalPackageNames.has(dependencyName)) {
+      continue;
+    }
+
+    const tarball = localTarballs.get(dependencyName);
+    if (!tarball) {
+      throw new Error(`Internal dependency ${dependencyName} is not available as a local tarball yet.`);
+    }
+
+    tarballs.push(tarball);
   }
 
   return [...new Set(tarballs)];
 }
+
+function resetInstallState(packageDirectory) {
+  rmSync(path.join(packageDirectory, 'node_modules'), { recursive: true, force: true });
+  rmSync(path.join(packageDirectory, 'package-lock.json'), { force: true });
+}
+
+const internalPackageNames = new Set(
+  packageDirectories.map((relativeDirectory) => {
+    const packageDirectory = path.join(__dirname, relativeDirectory);
+    return readPackageJson(packageDirectory).name;
+  }),
+);
 
 try {
   for (const relativeDirectory of packageDirectories) {
     const packageDirectory = path.join(__dirname, relativeDirectory);
     const packageJson = readPackageJson(packageDirectory);
 
-    logStep(`Installing ${packageJson.name}`);
-    run(
-      npmCommand,
-      ['install', '--workspaces=false', '--no-package-lock'],
-      packageDirectory,
-      `npm install for ${packageJson.name}`,
-    );
-
-    const internalTarballs = getInternalDependencyTarballs(packageJson);
-    if (internalTarballs.length > 0) {
-      logStep(`Overlaying local dependencies for ${packageJson.name}`);
+    if (mode === 'clean') {
+      logStep(`Cleaning ${packageJson.name}`);
       run(
         npmCommand,
-        ['install', '--workspaces=false', '--no-package-lock', '--no-save', ...internalTarballs],
+        ['run', 'clean', '--workspaces=false'],
         packageDirectory,
-        `npm install local tarballs for ${packageJson.name}`,
+        `npm run clean for ${packageJson.name}`,
+      );
+      continue;
+    }
+
+    resetInstallState(packageDirectory);
+
+    const externalDependencySpecs = getExternalDependencySpecs(packageJson, internalPackageNames);
+    const internalTarballs = getInternalDependencyTarballs(packageJson, internalPackageNames);
+    const installSpecs = [...externalDependencySpecs, ...internalTarballs];
+
+    if (installSpecs.length > 0) {
+      logStep(`Installing dependencies for ${packageJson.name}`);
+      run(
+        npmCommand,
+        ['install', '--workspaces=false', '--no-package-lock', '--no-save', '--no-audit', '--no-fund', ...installSpecs],
+        packageDirectory,
+        `npm install dependencies for ${packageJson.name}`,
       );
     }
 

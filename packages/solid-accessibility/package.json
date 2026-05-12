@@ -53,10 +53,12 @@
   },
 
   "scripts": {
+    "build:ordered": "node -e \"process.exit(0)\"",
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json && node scripts/copy-css.js",
     "prepublishOnly": "npm run build",
-    "rebuild": "npm run clean && npm run build"
+    "rebuild": "npm run clean --workspaces=false && npm run build --workspaces=false",
+    "rebuild:ordered": "node -e \"process.exit(0)\""
   },
 
   "files": ["dist", "README.md", "LICENSE.md", "NOTICE.md"],

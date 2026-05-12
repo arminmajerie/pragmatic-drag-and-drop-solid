@@ -79,8 +79,9 @@
     "@babel/runtime": "^7.0.0"
   },
   "devDependencies": {
-    "eslint": "^9.33.0",
-    "typescript": "5.9.2"
+    "@types/node": "^24.3.0",
+    "typescript": "5.9.2",
+    "eslint": "^9.33.0"
   },
   "files": [
     "dist",
@@ -89,9 +90,11 @@
     "NOTICE.md"
   ],
   "scripts": {
+    "build:ordered": "node -e \"process.exit(0)\"",
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
-    "rebuild": "npm run clean && npm run build"
+    "rebuild": "npm run clean --workspaces=false && npm run build --workspaces=false",
+    "rebuild:ordered": "node -e \"process.exit(0)\""
   }
 }

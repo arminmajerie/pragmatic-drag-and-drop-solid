@@ -83,7 +83,7 @@
   "devDependencies": {
     "@types/node": "^24.3.0",
     "eslint": "^9.33.0",
-    "tsup": "^8.5.0",
+    "tsup": "8.5.1",
     "typescript": "5.9.2"
   },
   "files": [
@@ -93,8 +93,10 @@
     "NOTICE.md"
   ],
   "scripts": {
+    "build:ordered": "node -e \"process.exit(0)\"",
     "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
     "build": "tsup --config tsup.config.ts",
-    "rebuild": "npm run clean && npm run build"
+    "rebuild": "npm run clean --workspaces=false && npm run build --workspaces=false",
+    "rebuild:ordered": "node -e \"process.exit(0)\""
   }
 }

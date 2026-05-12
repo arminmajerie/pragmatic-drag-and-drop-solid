@@ -69,6 +69,45 @@ function Get-PackedTarballPath([string]$WorkingDirectory, [string]$DestinationDi
   return Join-Path $DestinationDirectory $packed[0].filename
 }
 
+function Remove-InstallState([string]$WorkingDirectory) {
+  $nodeModulesPath = Join-Path $WorkingDirectory 'node_modules'
+  $packageLockPath = Join-Path $WorkingDirectory 'package-lock.json'
+
+  if (Test-Path -LiteralPath $nodeModulesPath) {
+    Remove-Item -LiteralPath $nodeModulesPath -Recurse -Force
+  }
+
+  if (Test-Path -LiteralPath $packageLockPath) {
+    Remove-Item -LiteralPath $packageLockPath -Force
+  }
+}
+
+function Get-ExternalInstallSpecs($PackageJson, $PlannedPackageNames) {
+  $specs = New-Object System.Collections.Generic.List[string]
+
+  foreach ($section in $DependencySections) {
+    if ($PackageJson.PSObject.Properties.Name -notcontains $section) {
+      continue
+    }
+
+    $dependencySection = $PackageJson.PSObject.Properties[$section].Value
+    if ($null -eq $dependencySection) {
+      continue
+    }
+
+    foreach ($dependencyProperty in $dependencySection.PSObject.Properties) {
+      $dependencyName = $dependencyProperty.Name
+      if ($PlannedPackageNames.Contains($dependencyName)) {
+        continue
+      }
+
+      $specs.Add("$dependencyName@$($dependencyProperty.Value)")
+    }
+  }
+
+  return @($specs | Select-Object -Unique)
+}
+
 Require-Command npm
 
 if (-not (Test-Path -LiteralPath $PlanPath)) {
@@ -91,6 +130,8 @@ foreach ($package in $plan.packages) {
   $plannedVersions[$package.name] = $package.newVersion
 }
 
+$plannedPackageNames = [System.Collections.Generic.HashSet[string]]::new([string[]]$plannedVersions.Keys)
+
 $localTarballs = @{}
 
 try {
@@ -107,13 +148,9 @@ try {
       throw "Version mismatch for $($package.name): expected $($package.newVersion) but found $($packageJson.version)"
     }
 
-    Step "Installing $($package.name)"
-    $installArguments = @('install', '--workspaces=false', '--no-package-lock')
-    if (-not [string]::IsNullOrWhiteSpace($InstallRegistry)) {
-      $installArguments += @('--registry', $InstallRegistry)
-    }
-    Invoke-Npm -WorkingDirectory $packageDirectory -Arguments $installArguments
+    Remove-InstallState -WorkingDirectory $packageDirectory
 
+    $externalInstallSpecs = Get-ExternalInstallSpecs -PackageJson $packageJson -PlannedPackageNames $plannedPackageNames
     $overlayTarballs = New-Object System.Collections.Generic.List[string]
     foreach ($section in $DependencySections) {
       if ($packageJson.PSObject.Properties.Name -notcontains $section) {
@@ -127,16 +164,24 @@ try {
 
       foreach ($dependencyProperty in $dependencySection.PSObject.Properties) {
         $dependencyName = $dependencyProperty.Name
-        if ($localTarballs.ContainsKey($dependencyName)) {
+        if ($plannedPackageNames.Contains($dependencyName)) {
+          if (-not $localTarballs.ContainsKey($dependencyName)) {
+            throw "Planned internal dependency '$dependencyName' for $($package.name) has not been packed yet."
+          }
+
           $overlayTarballs.Add($localTarballs[$dependencyName])
         }
       }
     }
 
-    if ($overlayTarballs.Count -gt 0) {
-      Step "Overlaying local dependencies for $($package.name)"
-      $overlayArguments = @('install', '--workspaces=false', '--no-package-lock', '--no-save') + @($overlayTarballs | Select-Object -Unique)
-      Invoke-Npm -WorkingDirectory $packageDirectory -Arguments $overlayArguments
+    $installSpecs = @($externalInstallSpecs) + @($overlayTarballs | Select-Object -Unique)
+    if ($installSpecs.Count -gt 0) {
+      Step "Installing dependencies for $($package.name)"
+      $installArguments = @('install', '--workspaces=false', '--no-package-lock', '--no-save', '--no-audit', '--no-fund') + $installSpecs
+      if (-not [string]::IsNullOrWhiteSpace($InstallRegistry)) {
+        $installArguments += @('--registry', $InstallRegistry)
+      }
+      Invoke-Npm -WorkingDirectory $packageDirectory -Arguments $installArguments
     }
 
     Step "Rebuilding $($package.name)"
@@ -147,7 +192,18 @@ try {
     $localTarballs[$package.name] = $tarballPath
 
     Step "Publishing $($package.name)@$($package.newVersion)"
-    $access = if (-not [string]::IsNullOrWhiteSpace($packageJson.publishConfig.access)) { $packageJson.publishConfig.access } else { $DefaultAccess }
+    $access = $DefaultAccess
+    if ($packageJson.PSObject.Properties.Name -contains 'publishConfig') {
+      $publishConfig = $packageJson.PSObject.Properties['publishConfig'].Value
+      if (
+        $null -ne $publishConfig -and
+        $publishConfig.PSObject.Properties.Name -contains 'access' -and
+        -not [string]::IsNullOrWhiteSpace($publishConfig.PSObject.Properties['access'].Value)
+      ) {
+        $access = $publishConfig.PSObject.Properties['access'].Value
+      }
+    }
+
     $publishArguments = @('publish', '--workspaces=false', $tarballPath, '--access', $access)
     if ($DryRun) {
       $publishArguments += '--dry-run'

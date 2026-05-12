@@ -46,3 +46,6 @@ yarn-error.log
 .nyc_output/
 pnpm-debug.log*
 npm-debug.log*
+/*/*/package-lock.json
+package-lock.json
+**/package-lock.json

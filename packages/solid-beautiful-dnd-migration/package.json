@@ -36,7 +36,6 @@
   "dependencies": {
     "@arminmajerie/pragmatic-drag-and-drop": "1.0.2",
     "@arminmajerie/pragmatic-drag-and-drop-auto-scroll": "1.0.1",
-    "@arminmajerie/pragmatic-drag-and-drop": "1.0.3",
     "@babel/runtime": "^7.0.0",
     "bind-event-listener": "^3.0.0",
     "react-beautiful-dnd": "^13.1.1",

@@ -21,7 +21,7 @@ function Step([string]$Message) {
   Write-Host "==> $Message" -ForegroundColor Cyan
 }
 
-function Require-Command([string]$CommandName) {
+function Assert-Command([string]$CommandName) {
   if (-not (Get-Command $CommandName -ErrorAction SilentlyContinue)) {
     throw "Required command '$CommandName' was not found in PATH."
   }
@@ -137,7 +137,7 @@ function Get-InstallRoot([string]$StartDirectory, [string]$WorkspaceRoot) {
   }
 }
 
-Require-Command npm
+Assert-Command npm
 
 $workspaceRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $corePackageDirectory = Join-Path $PSScriptRoot 'packages\core'

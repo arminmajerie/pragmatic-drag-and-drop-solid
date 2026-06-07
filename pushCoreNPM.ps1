@@ -31,12 +31,12 @@ function Read-PackageJson([string]$PackageJsonPath) {
   return Get-Content -LiteralPath $PackageJsonPath -Raw | ConvertFrom-Json
 }
 
-function Invoke-Npm([string]$WorkingDirectory, [string[]]$Arguments) {
+function Invoke-Pnpm([string]$WorkingDirectory, [string[]]$Arguments) {
   Push-Location $WorkingDirectory
   try {
-    & npm @Arguments
+    & pnpm @Arguments
     if ($LASTEXITCODE -ne 0) {
-      throw "npm $($Arguments -join ' ') failed with exit code $LASTEXITCODE"
+      throw "pnpm $($Arguments -join ' ') failed with exit code $LASTEXITCODE"
     }
   }
   finally {
@@ -111,6 +111,16 @@ function Get-InstallRoot([string]$StartDirectory, [string]$WorkspaceRoot) {
   $workspaceBoundary = [System.IO.Path]::GetFullPath($WorkspaceRoot)
 
   while ($true) {
+    $pnpmLockPath = Join-Path $current 'pnpm-lock.yaml'
+    if (Test-Path -LiteralPath $pnpmLockPath) {
+      return $current
+    }
+
+    $pnpmWorkspacePath = Join-Path $current 'pnpm-workspace.yaml'
+    if (Test-Path -LiteralPath $pnpmWorkspacePath) {
+      return $current
+    }
+
     $packageLockPath = Join-Path $current 'package-lock.json'
     if (Test-Path -LiteralPath $packageLockPath) {
       return $current
@@ -137,7 +147,7 @@ function Get-InstallRoot([string]$StartDirectory, [string]$WorkspaceRoot) {
   }
 }
 
-Assert-Command npm
+Assert-Command pnpm
 
 $workspaceRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $corePackageDirectory = Join-Path $PSScriptRoot 'packages\core'
@@ -158,9 +168,9 @@ $references = @(Get-DependencyReferences -WorkspaceRoot $workspaceRoot -Dependen
 Push-Location $corePackageDirectory
 try {
   Step "Bumping $dependencyName version ($Bump)"
-  & npm version $Bump --no-git-tag-version
+  & pnpm version $Bump --no-git-tag-version
   if ($LASTEXITCODE -ne 0) {
-    throw "npm version failed with exit code $LASTEXITCODE"
+    throw "pnpm version failed with exit code $LASTEXITCODE"
   }
 
   $currentCorePackage = Read-PackageJson -PackageJsonPath $corePackageJsonPath
@@ -168,9 +178,9 @@ try {
 
   if ($DryRun) {
     Step "Dry run: packing $dependencyName@$newVersion"
-    & npm pack
+    & pnpm pack
     if ($LASTEXITCODE -ne 0) {
-      throw "npm pack failed with exit code $LASTEXITCODE"
+      throw "pnpm pack failed with exit code $LASTEXITCODE"
     }
 
     Write-Host "[OK] Packed $dependencyName@$newVersion (consumer package.json files were not changed in dry-run mode)" -ForegroundColor Green
@@ -183,15 +193,15 @@ try {
     $publishArgs += @('--registry', $Registry)
   }
 
-  & npm @publishArgs
+  & pnpm @publishArgs
   if ($LASTEXITCODE -ne 0) {
-    throw "npm publish failed with exit code $LASTEXITCODE"
+    throw "pnpm publish failed with exit code $LASTEXITCODE"
   }
 
   if ($references.Count -gt 0) {
     Step "Updating $($references.Count) consumer dependency entries to $newVersion"
     foreach ($reference in $references) {
-      Invoke-Npm -WorkingDirectory $reference.PackageDirectory -Arguments @('pkg', 'set', "$($reference.Section).$dependencyName=$newVersion")
+      Invoke-Pnpm -WorkingDirectory $reference.PackageDirectory -Arguments @('pkg', 'set', "$($reference.Section).$dependencyName=$newVersion")
       Write-Host "  updated $($reference.PackageJsonPath) [$($reference.Section)]" -ForegroundColor DarkGray
     }
   }
@@ -215,7 +225,7 @@ try {
         $installArgs += @('--registry', $InstallRegistry)
       }
 
-      Invoke-Npm -WorkingDirectory $installRoot -Arguments $installArgs
+      Invoke-Pnpm -WorkingDirectory $installRoot -Arguments $installArgs
     }
   }
 

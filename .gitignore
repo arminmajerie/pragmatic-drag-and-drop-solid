@@ -44,7 +44,7 @@ yarn-error.log
 .vite/
 .turbo/
 .nyc_output/
-pnpm-debug.log*
+npm-debug.log*
 npm-debug.log*
 /*/*/package-lock.json
 package-lock.json

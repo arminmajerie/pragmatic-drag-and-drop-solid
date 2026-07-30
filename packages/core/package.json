@@ -171,6 +171,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
+    "esbuild": "0.28.1",
     "tsup": "8.5.1",
     "typescript": "5.9.2",
     "vite": "^6.4.2",
@@ -189,5 +190,8 @@
     "build": "tsc -p tsconfig.json",
     "rebuild": "npm run clean --workspaces=false && npm run build --workspaces=false",
     "rebuild:ordered": "node -e \"process.exit(0)\""
+  },
+  "overrides": {
+    "esbuild": "0.28.1"
   }
 }

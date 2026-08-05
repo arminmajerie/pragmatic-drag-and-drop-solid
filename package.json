@@ -5,11 +5,14 @@
   "description": "Solid.js port of Atlassian's Pragmatic Drag and Drop toolchain (framework-agnostic core + Solid UI add-ons)",
   "author": "Armin Majerie",
   "license": "Apache-2.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "dependencies": {
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "postcss": "8.5.14",
+    "postcss": "8.5.25",
     "typescript": "5.9.2",
     "sucrase": "3.35.1"
   },
@@ -17,10 +20,11 @@
   "packageManager": "npm@10.0.0",
 
   "overrides": {
+    "esbuild": "0.28.1",
     "source-map": "0.7.6",
     "sucrase": "3.35.1",
     "eslint": "^9.33.0",
-    "postcss": "8.5.14"
+    "postcss": "8.5.25"
   },
   "scripts": {
     "release:bump": "pwsh -File ./bumpAllNPM.ps1",

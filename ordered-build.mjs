@@ -5,6 +5,9 @@ import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const npmExecPath = process.env.npm_execpath;
+const npmRunner = npmExecPath ? process.execPath : npmCommand;
+const npmPrefixArgs = npmExecPath ? [npmExecPath] : [];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -40,10 +43,11 @@ function readPackageJson(packageDirectory) {
 }
 
 function run(command, args, cwd, label) {
-  const result = spawnSync(command, args, {
+  const isNpm = command === npmCommand;
+  const result = spawnSync(isNpm ? npmRunner : command, isNpm ? [...npmPrefixArgs, ...args] : args, {
     cwd,
     stdio: 'inherit',
-    shell: process.platform === 'win32',
+    shell: !npmExecPath && process.platform === 'win32',
   });
 
   if (result.status !== 0 || result.error) {
@@ -54,13 +58,13 @@ function run(command, args, cwd, label) {
 
 function packPackage(cwd) {
   const result = spawnSync(
-    npmCommand,
-    ['pack', '--workspaces=false', '--json', '--pack-destination', tempDirectory],
+    npmRunner,
+    [...npmPrefixArgs, 'pack', '--workspaces=false', '--json', '--pack-destination', tempDirectory],
     {
       cwd,
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'inherit'],
-      shell: process.platform === 'win32',
+      shell: !npmExecPath && process.platform === 'win32',
     },
   );
 

@@ -13,18 +13,20 @@
   },
   "devDependencies": {
     "postcss": "8.5.25",
-    "typescript": "5.9.2",
-    "sucrase": "3.35.1"
+    "sucrase": "3.35.1",
+    "typescript": "5.9.2"
   },
-  "engines": { "node": ">=18.17.0" },
-  "packageManager": "npm@10.0.0",
-
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "packageManager": "npm@11.17.0",
   "overrides": {
     "esbuild": "0.28.1",
     "source-map": "0.7.6",
     "sucrase": "3.35.1",
     "eslint": "^9.33.0",
-    "postcss": "8.5.25"
+    "postcss": "8.5.25",
+    "nanoid": "3.3.18"
   },
   "scripts": {
     "release:bump": "pwsh -File ./bumpAllNPM.ps1",
@@ -34,18 +36,15 @@
     "publish:flourish": "node ./run-package-npm.mjs packages/flourish publish --access public",
     "publish:auto-scroll": "node ./run-package-npm.mjs packages/auto-scroll publish --access public",
     "publish:drop-indicator": "node ./run-package-npm.mjs packages/solid-drop-indicator publish --access public",
-
     "publish:live-region": "node ./run-package-npm.mjs packages/live-region publish --access public",
     "publish:accessibility": "node ./run-package-npm.mjs packages/solid-accessibility publish --access public",
-
     "publish:ordered": "npm run publish:core && npm run publish:hitbox && npm run publish:auto-scroll && npm run publish:drop-indicator && npm run publish:flourish && npm run publish:live-region && npm run publish:accessibility",
-
     "clean": "node ./ordered-build.mjs clean",
     "build": "node ./ordered-build.mjs build",
     "prepublishOnly": "npm run build",
     "rebuild": "node ./ordered-build.mjs rebuild",
     "build:ordered": "node ./ordered-build.mjs build",
-    "rebuild:ordered": "node ./ordered-build.mjs rebuild"
+    "rebuild:ordered": "node ./ordered-build.mjs rebuild",
+    "audit:check": "npm audit --audit-level=low --registry=https://registry.npmjs.org/"
   }
-
 }

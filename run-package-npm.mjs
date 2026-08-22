@@ -13,12 +13,15 @@ if (!relativePackagePath || npmArgs.length === 0) {
 }
 
 const npmCommand = process.platform === 'win32' ? 'npm.cmd' : 'npm';
+const npmExecPath = process.env.npm_execpath;
+const npmRunner = npmExecPath ? process.execPath : npmCommand;
+const npmPrefixArgs = npmExecPath ? [npmExecPath] : [];
 const packageDirectory = path.resolve(__dirname, relativePackagePath);
 
-const result = spawnSync(npmCommand, npmArgs, {
+const result = spawnSync(npmRunner, [...npmPrefixArgs, ...npmArgs], {
   cwd: packageDirectory,
   stdio: 'inherit',
-  shell: process.platform === 'win32',
+  shell: !npmExecPath && process.platform === 'win32',
 });
 
 if (result.error) {
